@@ -1,0 +1,6 @@
+{
+  "name": "Video Compositor",
+  "description": "Offline portrait-to-landscape video compositor with blurred background and custom audio replacement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
