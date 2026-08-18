@@ -1,16 +1,24 @@
 workflows:
-  android-apk:
-    name: Android APK
+  android-workflow:
+    name: Android Build
     max_build_duration: 30
-
+    instance_type: mac_mini_m2
+    environment:
+      java: 17
     scripts:
-      - name: Set Android SDK location
+      - name: Set up Gradle wrapper permissions
         script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-
-      - name: Build debug APK
+          chmod +x gradlew
+      - name: Build Android Debug APK
         script: |
           ./gradlew assembleDebug
-
     artifacts:
-      - app/build/outputs/apk/debug/*.apk
+      - app/build/outputs/**/*.apk
+      - app/build/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - magzetic@gmail.com
+        notify:
+          failure: true
+          success: true
